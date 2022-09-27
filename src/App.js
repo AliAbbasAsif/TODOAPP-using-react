@@ -12,20 +12,17 @@ function App() {
     console.log(list)
     setlist([...list])
   }
-  let edititem = (en) => {
+  let edititem = (id) => {
     let newVal = prompt("edit");
-    newVal = list.map(() => {
-      return newVal;
-    })
-    console.log(en)
-    setlist(newVal)
+
+    list[id] = newVal
+    console.log(id)
+    setlist([...list])
   }
   let deleteitem = (id) => {
     // console.log(id)
-    let updateitems = list.filter((elem, ind) => {
-      return ind !== id;
-    })
-    setlist(updateitems);
+    list.splice(id,1)
+    setlist([...list]);
   }
   let removeall = () => {
     setlist([]);
@@ -51,10 +48,10 @@ function App() {
 
         <div>
           {list.map((e, i) => {
-            return <div className='item' key={i}>{e}
-              <Button btnValue="Edit" click={() => edititem(e)} otherclass="hi" />
+            return( <div className='item' key={i}>{e}
+              <Button btnValue="Edit" click={() => edititem(i)} otherclass="hi" />
               <Button btnValue="Delete" click={() => deleteitem(i)} otherclass="hi" />
-            </div>
+            </div>)
           })}
 
         </div>
